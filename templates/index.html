@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="text-center">
+        <h1>Key Logger!</h1>
+        <form method="POST">
+            <label for="email">Type Email
+                <input  type="email" name="email">
+            </label>
+           <div class="requesttolog">
+            <input type="submit" value="Start Keylogging" class="btn btn-primary">
+           </div>
+        </form>
+    </div>
+{% endblock%}
