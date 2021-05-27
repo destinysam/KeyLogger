@@ -1,1 +1,3 @@
-keylogger_venv
+keylogger_venv/
+.vscode/
+keylogger.txt
